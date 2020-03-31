@@ -1,0 +1,19 @@
+server:
+  port: 9998
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/order?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useAffectedRows=true&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.106.220.141:8848
+        namespace: 549f72eb-6390-4e62-8ad6-39422f8390fc
+
+logging:
+  level:
+    root: info
