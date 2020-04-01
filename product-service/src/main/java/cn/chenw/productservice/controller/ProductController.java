@@ -40,6 +40,7 @@ public class ProductController {
      */
     @PostMapping("/updateProductStock")
     BaseModel updateProductStock(@RequestBody Product product){
+        int i=1/0;
         return productService.updateProductStock(product);
     }
 }

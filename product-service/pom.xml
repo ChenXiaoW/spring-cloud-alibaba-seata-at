@@ -18,6 +18,7 @@
         <druid.version>1.1.21</druid.version>
         <mybatis.version>2.1.2</mybatis.version>
         <fastjson.version>1.2.68</fastjson.version>
+        <seata.all.version>1.0.0</seata.all.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,23 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+            <version>${seata.all.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>seata-all</artifactId>
+                    <groupId>io.seata</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-all</artifactId>
+            <version>${seata.all.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

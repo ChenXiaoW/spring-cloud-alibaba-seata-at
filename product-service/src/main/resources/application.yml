@@ -28,6 +28,9 @@ spring:
       discovery:
         server-addr: 47.106.220.141:8848
         namespace: 549f72eb-6390-4e62-8ad6-39422f8390fc
+    alibaba:
+      seata:
+        tx-service-group: ${spring.application.name}
 
 mybatis:
   mapper-locations: classpath:sqlclient/*.xml

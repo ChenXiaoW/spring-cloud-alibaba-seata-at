@@ -7,6 +7,7 @@ import cn.chenw.productservice.dao.ProductDao;
 import cn.chenw.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author  chenw
@@ -39,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
      * @param product
      * @return
      */
+    @Transactional
     @Override
     public BaseModel updateProductStock(Product product) {
         int result = productDao.updateProductStock(product);
