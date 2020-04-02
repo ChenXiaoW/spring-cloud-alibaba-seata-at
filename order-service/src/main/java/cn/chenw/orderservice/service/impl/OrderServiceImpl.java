@@ -9,10 +9,12 @@ import cn.chenw.orderservice.dao.OrderDao;
 import cn.chenw.orderservice.manager.ProductFeignManager;
 import cn.chenw.orderservice.service.OrderService;
 import com.alibaba.fastjson.JSON;
+import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -37,8 +39,8 @@ public class OrderServiceImpl implements OrderService {
      * @param createOrderDTO (pid-商品ID,count-数量)
      * @return
      */
-    @GlobalTransactional //开启全局事务
     @Override
+    @GlobalTransactional
     public BaseModel insertOrder(CreateOrderDTO createOrderDTO) {
         BaseModel baseModel = null;
         //查询商品
@@ -56,6 +58,7 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal totalPrice = product.getPrice().multiply(new BigDecimal(order.getCount()));
         order.setTotalprice(totalPrice);
         order.setPname(product.getPname());
+        //生成订单
         Integer integer = orderDao.insertOrder(order);
         if(integer == 0){
             return new BaseModel(CodeConstant.UPDATE_ERROR,CodeConstant.FAIL,"生成订单失败",null);
