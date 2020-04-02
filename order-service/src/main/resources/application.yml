@@ -55,12 +55,13 @@ mybatis:
   mapper-locations: classpath:sqlclient/*.xml
   type-aliases-package: cn.chenw.commonservice.model
 
-#开启sentinel熔断器
+#sentinel熔断器配置 - 关闭
 feign:
   sentinel:
-    enabled: true
+    enabled: false
 
 logging:
   level:
     root: info
+    io.seata.config.FileConfiguration: error
 

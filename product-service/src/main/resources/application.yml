@@ -28,9 +28,28 @@ spring:
       discovery:
         server-addr: 47.106.220.141:8848
         namespace: 549f72eb-6390-4e62-8ad6-39422f8390fc
-    alibaba:
-      seata:
-        tx-service-group: ${spring.application.name}
+
+#seata配置
+seata:
+  # 1.0新特性，需要依赖seata-spring-boot-starter,默认为true
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: seataGroup-${seata.application-id}
+  service:
+    vgroup-mapping: default
+    #配置Client连接TC的地址
+    grouplist: 47.106.220.141:8091
+    # 是否禁用全局事务
+    disable-global-transaction: false
+  config:
+    type: file
+    file:
+      name: file.conf
+  registry:
+    type: nacos
+    nacos:
+      cluster: default
+      server-addr: 47.106.220.141:8848
 
 mybatis:
   mapper-locations: classpath:sqlclient/*.xml

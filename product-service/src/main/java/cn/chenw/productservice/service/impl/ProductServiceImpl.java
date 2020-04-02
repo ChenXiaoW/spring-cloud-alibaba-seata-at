@@ -5,13 +5,15 @@ import cn.chenw.commonservice.model.poto.Product;
 import cn.chenw.commonservice.util.CodeConstant;
 import cn.chenw.productservice.dao.ProductDao;
 import cn.chenw.productservice.service.ProductService;
+import io.seata.core.context.RootContext;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author  chenw
- * @date  2020/4/1 13:54
+ * @author chenw
+ * @date 2020/4/1 13:54
  */
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -28,10 +30,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public BaseModel queryProductById(Product product) {
         Product result = productDao.queryProductById(product);
-        if( null == result){
-            return new BaseModel(CodeConstant.QUERY_ERROR,CodeConstant.FAIL,"查询结果为空，该数据不存在",null);
+        if (null == result) {
+            return new BaseModel(CodeConstant.QUERY_ERROR, CodeConstant.FAIL, "查询结果为空，该数据不存在", null);
         }
-        return new BaseModel(CodeConstant.SUCCESS_CODE,CodeConstant.SUCCESS,"查询成功",result);
+        return new BaseModel(CodeConstant.SUCCESS_CODE, CodeConstant.SUCCESS, "查询成功", result);
     }
 
     /**
@@ -40,13 +42,12 @@ public class ProductServiceImpl implements ProductService {
      * @param product
      * @return
      */
-    @Transactional
     @Override
     public BaseModel updateProductStock(Product product) {
         int result = productDao.updateProductStock(product);
-        if(result == 0){
-            return new BaseModel(CodeConstant.QUERY_ERROR,CodeConstant.FAIL,"更新失败",null);
+        if (result == 0) {
+            return new BaseModel(CodeConstant.QUERY_ERROR, CodeConstant.FAIL, "更新失败", null);
         }
-        return new BaseModel(CodeConstant.SUCCESS_CODE,CodeConstant.SUCCESS,"查询成功",null);
+        return new BaseModel(CodeConstant.SUCCESS_CODE, CodeConstant.SUCCESS, "查询成功", null);
     }
 }
