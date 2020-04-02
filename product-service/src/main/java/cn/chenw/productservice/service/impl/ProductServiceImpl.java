@@ -7,6 +7,8 @@ import cn.chenw.productservice.dao.ProductDao;
 import cn.chenw.productservice.service.ProductService;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
+
+    private  final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     ProductDao productDao;
@@ -44,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public BaseModel updateProductStock(Product product) {
+        log.info(" Product服务 XID ---> "+RootContext.getXID());
         int result = productDao.updateProductStock(product);
         if (result == 0) {
             return new BaseModel(CodeConstant.QUERY_ERROR, CodeConstant.FAIL, "更新失败", null);

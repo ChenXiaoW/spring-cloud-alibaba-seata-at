@@ -34,6 +34,7 @@ spring:
 seata:
   enabled: true
   application-id: ${spring.application.name}
+  #事务组
   tx-service-group: seataGroup-${seata.application-id}
   service:
     vgroup-mapping: default
@@ -45,6 +46,7 @@ seata:
     type: file
     file:
       name: file.conf
+  #nacos中server-Addr 所在的命名空间
   registry:
     type: nacos
     nacos:
