@@ -1,5 +1,5 @@
 # spring-cloud-alibaba-seata
-seata分布式事务Demo
+seata分布式事务Demo - AT模式
 
 # 2020-0402
 1、更新seata包依赖，支持自动选择数据源
