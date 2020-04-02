@@ -11,9 +11,12 @@ import cn.chenw.orderservice.service.OrderService;
 import com.alibaba.fastjson.JSON;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -26,6 +29,8 @@ import java.math.BigDecimal;
  */
 @Service
 public class OrderServiceImpl implements OrderService {
+
+    private  final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     ProductFeignManager productFeignManager;
@@ -42,6 +47,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @GlobalTransactional
     public BaseModel insertOrder(CreateOrderDTO createOrderDTO) {
+        log.info(" Order服务 XID ---> "+RootContext.getXID());
         BaseModel baseModel = null;
         //查询商品
         baseModel = productFeignManager.queryProductById(new Product().setPid(createOrderDTO.getPid()));
