@@ -1,4 +1,4 @@
-# spring-cloud-alibaba-seata
+# spring-cloud-alibaba-seata-at
 seata分布式事务Demo - AT模式
 
 # 2020-0402
