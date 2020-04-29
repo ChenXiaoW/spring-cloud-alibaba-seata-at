@@ -6,12 +6,11 @@ import cn.chenw.commonservice.util.CodeConstant;
 import cn.chenw.productservice.dao.ProductDao;
 import cn.chenw.productservice.service.ProductService;
 import io.seata.core.context.RootContext;
-import io.seata.spring.annotation.GlobalTransactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * @author chenw

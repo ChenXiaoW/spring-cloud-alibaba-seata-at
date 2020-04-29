@@ -1,7 +1,6 @@
 package cn.chenw.productservice.controller;
 
 import cn.chenw.commonservice.model.BaseModel;
-import cn.chenw.commonservice.model.dto.CreateOrderDTO;
 import cn.chenw.commonservice.model.poto.Product;
 import cn.chenw.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
